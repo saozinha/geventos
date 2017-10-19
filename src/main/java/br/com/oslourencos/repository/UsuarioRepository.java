@@ -28,7 +28,7 @@ public class UsuarioRepository implements Serializable {
 				return (UsuarioEntity)query.getSingleResult();
 	 
 			} catch (Exception e) {
-	 
+				e.getMessage();
 				return null;
 			}
 	 

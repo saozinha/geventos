@@ -13,49 +13,50 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.oslourencos.model.UsuarioModel;
+import br.com.oslourencos.uteis.Uteis;
 
 
 @WebFilter("/sistema/*")
 public class AutenticacaoFilter implements Filter {
- 
-    public AutenticacaoFilter() {
- 
-    }
- 
-	public void destroy() {
- 
+
+	public AutenticacaoFilter() {
+
 	}
- 
+
+	public void destroy() {
+
+	}
+
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
- 
+
 		HttpSession httpSession 				= ((HttpServletRequest) request).getSession(); 
- 
+
 		HttpServletRequest httpServletRequest   = (HttpServletRequest) request;
- 
+
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
- 
+
+
 		if(httpServletRequest.getRequestURI().indexOf("login.xhtml") <= -1){
- 
+
 			UsuarioModel usuarioModel =(UsuarioModel) httpSession.getAttribute("usuarioAutenticado");
- 
-			if(usuarioModel == null){
-				System.out.println("URL : " + httpServletRequest.getContextPath()+ "/login.xhtml");
+
+			if(usuarioModel == null){ 
 				httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+ "/login.xhtml");
- 
+
 			}
 			else{
- 
+
 				chain.doFilter(request, response);
 			}
-		}		
-		else{
- 
+
+
 			chain.doFilter(request, response);
 		}
+
 	}
- 
+
 	public void init(FilterConfig fConfig) throws ServletException {
- 
+
 	}
- 
+
 }

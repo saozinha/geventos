@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
  
-@Table(name="usuario")
+@Table(name="tb_usuario")
 @Entity	
 @NamedQuery(name = "UsuarioEntity.findUser", 
 		    query= "SELECT u FROM UsuarioEntity u WHERE u.usuario = :usuario AND u.senha = :senha")
